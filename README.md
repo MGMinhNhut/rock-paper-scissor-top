@@ -1,1 +1,3 @@
-# rock-paper-scissor-top
+# Document Heading
+
+You need to click right mouse btn then choose "Inspect" /F12 and find the tab console in order to see the result!
