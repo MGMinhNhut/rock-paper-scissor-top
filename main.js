@@ -31,55 +31,82 @@ function playRound(humanChoice, computerChoice){
     if(humanChoice == "rock" && computerChoice == "paper"){
         announce.textContent = "You lose! Paper beats Rock.";
         computerScore++;
-        score.textContent = humanScore + ":" + computerScore;
+        score.textContent = humanScore + " : " + computerScore;
     }
     else if(humanChoice == "rock" && computerChoice == "rock"){
         announce.textContent = "Draw! You both picked Rock";
         computerScore++;
         humanScore++;
-        score.textContent = humanScore + ":" + computerScore;
+        score.textContent = humanScore + " : " + computerScore;
     }
     else if(humanChoice == "rock" && computerChoice == "scissor"){
         announce.textContent = "You win! Rock beats scissors";
         humanScore++;
-        score.textContent = humanScore + ":" + computerScore;
+        score.textContent = humanScore + " : " + computerScore;
     }
     else if(humanChoice == "paper" && computerChoice == "rock"){
         announce.textContent = "You win! Paper beats Rock";
         humanScore++;
-        score.textContent = humanScore + ":" + computerScore;
+        score.textContent = humanScore + " : " + computerScore;
     }
     else if(humanChoice == "paper" && computerChoice == "paper"){
         announce.textContent = "Draw! You both picked Paper";
         humanScore++;
         computerScore++;
-        score.textContent = humanScore + ":" + computerScore;
+        score.textContent = humanScore + " : " + computerScore;
     }
     else if(humanChoice == "paper" && computerChoice == "scissor"){
         announce.textContent = "You lose! Scissors beat Paper";
         computerScore++;
-        score.textContent = humanScore + ":" + computerScore;
+        score.textContent = humanScore + " : " + computerScore;
     }
     else if(humanChoice == "scissor" && computerChoice == "rock"){
         announce.textContent = "You lose! Rock beats scissors";
         computerScore++;
-        score.textContent = humanScore + ":" + computerScore;
+        score.textContent = humanScore + " : " + computerScore;
     }
     else if(humanChoice == "scissor" && computerChoice == "paper"){
         announce.textContent = "You win! Scissors beat Paper";
        humanScore++;
-       score.textContent = humanScore + ":" + computerScore;
+       score.textContent = humanScore + " : " + computerScore;
     }
     else{
         announce.textContent = "Draw! You both picked Scissor";
         humanScore++;
         computerScore++;
-        score.textContent = humanScore + ":" + computerScore;
+        score.textContent = humanScore + " : " + computerScore;
+    }
+    checkWinner();
+}
+
+function checkWinner(){
+    if(humanScore == 5 || computerScore == 5){
+        if(humanScore == 5){
+            announce.textContent = "Not surprise! You are the winner!";
+        }
+        else{
+            announce.textContent = "Too bad! Lost to a bot!"
+        }
+        rockChoice.disabled = true;
+        paperChoice.disabled = true;
+        scissorChoice.disabled = true;
+        const again = document.createElement("button");
+        again.textContent = "Play Again?";
+        again.setAttribute("style", "padding: 10px; margin-top: 20px;")
+        result_shower.appendChild(again);
+        again.addEventListener("click", () => {
+            window.location.reload();
+        });
     }
 }
 
+const container = document.querySelector(".container");
 const result_shower = document.createElement("div");
-document.body.appendChild(result_shower);
+
+container.appendChild(result_shower);
+result_shower.setAttribute("style", "display:flex; flex-direction: column; margin-top: 3vh; align-items:center; ")
+announce.setAttribute("style", "font-size:30px;")
+score.setAttribute("style", "font-size:45px; margin:0")
 result_shower.appendChild(announce);
 result_shower.appendChild(score);
 
