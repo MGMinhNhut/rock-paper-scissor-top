@@ -1,3 +1,3 @@
-# Instruction
+# Notice
 
-You need to click right mouse btn then choose "Inspect" /F12 and find the tab console in order to see the result!
+This project is not showing off all of my skills, it's just one of my checkpoints on my journey, so please don't take this too seriously and feel free to comment and support me, thank you for reading!
