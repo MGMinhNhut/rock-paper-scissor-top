@@ -1,5 +1,6 @@
 let humanScore = 0;
 let computerScore = 0;
+
 function getComputerChoice(){
     let choiceReference = parseInt((Math.random() * 3) + 1);
     if(choiceReference === 1){
@@ -9,65 +10,76 @@ function getComputerChoice(){
         return "paper";
     }
     else{
-        return "scissors";
+        return "scissor";
     }
 }
 
-function getHumanChoice(){
-    let choice =prompt("Please enter your choice: ");
-    return choice;
-}
+const rockChoice =  document.querySelector("#rock");
+rockChoice.addEventListener("click", () => playRound("rock", getComputerChoice()));
+
+const paperChoice =  document.querySelector("#paper");
+paperChoice.addEventListener("click", () => playRound("paper", getComputerChoice()));
+
+const scissorChoice =  document.querySelector("#scissor");
+scissorChoice.addEventListener("click", () => playRound("scissor", getComputerChoice()));
+
+const announce = document.createElement("h3");
+const score = document.createElement("p");
 
 function playRound(humanChoice, computerChoice){
     humanChoice = humanChoice.toLowerCase();
     if(humanChoice == "rock" && computerChoice == "paper"){
-        console.log("You lose! Paper beats Rock.");
+        announce.textContent = "You lose! Paper beats Rock.";
         computerScore++;
+        score.textContent = humanScore + ":" + computerScore;
     }
     else if(humanChoice == "rock" && computerChoice == "rock"){
-        console.log("Draw! You both picked Rock");
+        announce.textContent = "Draw! You both picked Rock";
         computerScore++;
         humanScore++;
+        score.textContent = humanScore + ":" + computerScore;
     }
-    else if(humanChoice == "rock" && computerChoice == "scissors"){
-        console.log("You win! rock beats scissors");
+    else if(humanChoice == "rock" && computerChoice == "scissor"){
+        announce.textContent = "You win! Rock beats scissors";
         humanScore++;
+        score.textContent = humanScore + ":" + computerScore;
     }
     else if(humanChoice == "paper" && computerChoice == "rock"){
-        console.log("You win! Paper beats Rock");
+        announce.textContent = "You win! Paper beats Rock";
         humanScore++;
+        score.textContent = humanScore + ":" + computerScore;
     }
     else if(humanChoice == "paper" && computerChoice == "paper"){
-        console.log("Draw! You both picked Paper");
+        announce.textContent = "Draw! You both picked Paper";
         humanScore++;
         computerScore++;
+        score.textContent = humanScore + ":" + computerScore;
     }
-    else if(humanChoice == "paper" && computerChoice == "scissors"){
-        console.log("You lose! Scissors beat Paper");
+    else if(humanChoice == "paper" && computerChoice == "scissor"){
+        announce.textContent = "You lose! Scissors beat Paper";
         computerScore++;
+        score.textContent = humanScore + ":" + computerScore;
     }
-    else if(humanChoice == "scissors" && computerChoice == "rock"){
-        console.log("You lose! Rock beats scissors");
+    else if(humanChoice == "scissor" && computerChoice == "rock"){
+        announce.textContent = "You lose! Rock beats scissors";
         computerScore++;
+        score.textContent = humanScore + ":" + computerScore;
     }
-    else if(humanChoice == "scissors" && computerChoice == "paper"){
-        console.log("You win! Scissors beat Paper");
-       humanScore++; 
+    else if(humanChoice == "scissor" && computerChoice == "paper"){
+        announce.textContent = "You win! Scissors beat Paper";
+       humanScore++;
+       score.textContent = humanScore + ":" + computerScore;
     }
     else{
-        console.log("Draw! You both picked Scissors");
+        announce.textContent = "Draw! You both picked Scissor";
         humanScore++;
         computerScore++;
+        score.textContent = humanScore + ":" + computerScore;
     }
 }
-for(let i = 1; i <= 5; i++){
-    let playerChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
-    playRound(playerChoice, computerChoice);    
-}
-if(humanScore > computerScore) console.log("You won! " + humanScore + "-" + computerScore);
-else if(humanScore < computerScore) console.log("You lost!" + humanScore + "-" + computerScore);
-else{
-    console.log("Draw!" + humanScore + "-" + computerScore);
-}
+
+const result_shower = document.createElement("div");
+document.body.appendChild(result_shower);
+result_shower.appendChild(announce);
+result_shower.appendChild(score);
 
